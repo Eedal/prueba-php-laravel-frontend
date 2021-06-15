@@ -88,7 +88,7 @@ export default {
     data() {
         return {
             user: {
-                
+
             }
         }
     },
@@ -108,7 +108,7 @@ export default {
             console.log(this.user);
             try {
                 await axios.put('https://stark-bastion-08167.herokuapp.com/api/users/'+this.user.id,this.user)
-                window.location.href="/usuario/listar"
+                window.location.href="/"
             } catch (error) {
                 console.log(error);
             }
