@@ -93,7 +93,7 @@ export default {
     },     
     methods: {  
         async save() {
-            try {
+            try { 
                 await axios.post('https://stark-bastion-08167.herokuapp.com/api/users', this.user)
                 window.location.href="/usuario/listar"
             } catch (error) {
