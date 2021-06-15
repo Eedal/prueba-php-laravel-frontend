@@ -87,11 +87,11 @@
 import axios from 'axios'
 export default {
     data() {
-        return {
+        return { 
             user: {},
-        } 
-    },    
-    methods: { 
+        }  
+    },     
+    methods: {  
         async save() {
             try {
                 await axios.post('https://stark-bastion-08167.herokuapp.com/api/users', this.user)
