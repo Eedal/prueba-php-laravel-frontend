@@ -106,8 +106,8 @@ export default {
                         text += er +"\n"
                     }
                 }
-                alert(text);
-            }
+                alert(text); 
+            } 
         },
         contentLetters(input, value){
             var result = /[?!a-zA-Z]/.test(value);
