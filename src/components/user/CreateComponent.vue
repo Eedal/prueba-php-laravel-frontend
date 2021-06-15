@@ -89,8 +89,8 @@ export default {
     data() {
         return {
             user: {},
-        }
-    },   
+        } 
+    },    
     methods: { 
         async save() {
             try {
