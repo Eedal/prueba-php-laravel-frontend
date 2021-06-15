@@ -87,13 +87,15 @@ export default {
     },
     data() {
         return {
-            user: {}
+            user: {
+                
+            }
         }
     },
     methods: {
-        getUser() {
+        getUser() { 
             axios.get('https://stark-bastion-08167.herokuapp.com/api/users/'+this.$route.params.id)
-            .then(response => {
+            .then(response => { 
                 this.user = response.data.data.attributes
                 this.user.id = response.data.data.user_id
                 console.log(this.user);
