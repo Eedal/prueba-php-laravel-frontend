@@ -7,17 +7,17 @@ const routes = [
   {
     path: '/usuario/crear',
     name: 'CreateComponent',
-    component: () => import('../components/user/CreateComponent.vue')
+    component: () => import('../views/user/CreateComponent.vue')
   },
   {
     path: '/usuario/editar/:id',
     name: 'EditComponent',
-    component: () => import('../components/user/EditComponent.vue')
+    component: () => import('../views/user/EditComponent.vue')
   },
   {
     path: '/usuario/listar',
     name: 'ListComponent',
-    component: () => import('../components/user/ListComponent.vue')
+    component: () => import('../views/user/ListComponent.vue')
   }
   
 ]

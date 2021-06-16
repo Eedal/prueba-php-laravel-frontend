@@ -15,7 +15,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Acciones</th>
@@ -23,12 +22,12 @@
                     </thead>
                     <tbody>
                         <tr v-for="user in users" :key="user.data.user_id">
-                            <td>{{user.data.user_id}}</td>
                             <td>{{user.data.attributes.nombres}}</td>
                             <td>{{user.data.attributes.correo}}</td>
                             <td>
                                 <div class="btn-group" role="group" arial-label="">
                                     <router-link :to="{name: 'EditComponent', params:{id:user.data.user_id}}" class="btn btn-info">Editar</router-link>
+                                    <button type="button" v-on:click="deleted(user.data.user_id)" class="btn btn-danger">Borrar</button>
                                 </div>
                             </td>
                         </tr>
@@ -41,7 +40,7 @@
 
 <script>
 import axios from 'axios'
-
+import Swal from 'sweetalert2'
 export default {
     data() {
         return {
@@ -52,14 +51,41 @@ export default {
         this.getUsers()
     },
     methods: {
-        async getUsers() {
-            const users = await axios.get('https://stark-bastion-08167.herokuapp.com/api/users')
-            try {
-                this.users = users.data.data
-                console.log(this.users);
-            } catch (error) {
+        getUsers() {
+            axios.get('https://prueba-php-laravel-backend.herokuapp.com/api/users')
+            .then(response => {
+                this.users = response.data.data
+            })
+            .catch(error => {
                 console.log(error);
+            })
+        },
+        deleted(user_id) {
+            Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, quiero eliminar el usuario!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('https://prueba-php-laravel-backend.herokuapp.com/api/users/' + user_id)
+                .then(() => {
+                    Swal.fire(
+                    '¡Eliminado!',
+                    'El usuario ha sido eliminado',
+                    'success'
+                    )
+                    this.getUsers()
+                })
+                .catch(error => {
+                    console.log(error);
+                })
             }
+            })
+            
         }
     }
 }
